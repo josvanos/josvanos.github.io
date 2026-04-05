@@ -1,6 +1,14 @@
-import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { defineCollection } from 'astro:content';
+
+const referenceSchema = z.object({
+	title: z.string().optional(),
+	url: z.string().optional(),
+	author: z.string().optional(),
+	number: z.number().optional(),
+});
+
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -11,9 +19,10 @@ const blog = defineCollection({
 			title: z.string(),
 			description: z.string(),
 			// Transform string to Date object
-			pubDate: z.coerce.date(),
+			pubDate: z.coerce.date().optional(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
+			references: z.array(referenceSchema).optional(),
 		}),
 });
 
