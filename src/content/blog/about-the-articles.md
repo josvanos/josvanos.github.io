@@ -1,6 +1,6 @@
 ---
 title: Why these articles?
-description: "test"
+description: The story behind this website
 author: Jos van Os
 publish_date: "6 Apr 2026"
 ---
